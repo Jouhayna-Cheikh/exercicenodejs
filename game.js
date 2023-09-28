@@ -24,6 +24,13 @@ app.get('/game', (req, res) => {
 
 
 
+//2
+app.get('/game/select/:year', (req, res) => {
+    const yearParam = parseInt(req.params.year);
+    const filteredGames = steamGamesData.filter(game => game.year > yearParam);
+
+    res.status(200).json(filteredGames);
+});
 
 
 //*
