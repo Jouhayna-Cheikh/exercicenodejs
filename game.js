@@ -33,6 +33,19 @@ app.get('/game/select/:year', (req, res) => {
 });
 
 
+//3
+app.get('/game/:name', (req, res) => {
+    const gameName = req.params.name;
+    const game = steamGamesData.find(game => game.name === gameName);
+
+    if (game) {
+        res.status(200).json({ steamUrl: game.url });
+    } else {
+        res.status(404).json({ error: 'Jeu non trouvé' });
+    }
+});
+
+
 //*
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
